@@ -1375,9 +1375,9 @@
           Discussion on Calendly</a>
       </div>
 
-    </div style="text-align:center;margin-bottom:2rem;">
-    <a href="https://drive.google.com/file/d/1y6IC9DzliQQXzQPCwlf5icoXH3V9SOQg/view?usp=sharing" target="_blank"
-      class="btn-primary">📄 View Resume</a>
+    <div style="text-align:center;margin-bottom:2rem;">
+      <a href="https://drive.google.com/file/d/1y6IC9DzliQQXzQPCwlf5icoXH3V9SOQg/view?usp=sharing" target="_blank"
+        class="btn-primary">📄 View Resume</a>
     </div>
     <div class="divider" style="margin:2.5rem auto;"></div>
     <div class="contact-form reveal">
@@ -1485,8 +1485,8 @@
     // ║  Service ID → emailjs.com → Email Services                  ║
     // ║  Template ID → emailjs.com → Email Templates                ║
     // ╚══════════════════════════════════════════════════════════════╝
-    const EMAILJS_SERVICE_ID = 'EMAILJS_SERVICE_ID';
-    const EMAILJS_TEMPLATE_ID = 'EMAILJS_TEMPLATE_ID';
+    const EMAILJS_SVC = 'EMAILJS_SERVICE_ID';
+    const EMAILJS_TPL = 'EMAILJS_TEMPLATE_ID';
 
     // Form submit — sends email via EmailJS
     function handleSubmit() {
@@ -1520,7 +1520,7 @@
         message: message,
       };
 
-      emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams)
+      emailjs.send(EMAILJS_SVC, EMAILJS_TPL, templateParams)
         .then(function () {
           // Success
           successEl.style.display = 'block';
