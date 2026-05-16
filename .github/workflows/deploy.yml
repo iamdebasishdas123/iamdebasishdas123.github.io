@@ -35,9 +35,14 @@ jobs:
 
       - name: Inject EmailJS keys into index.html
         run: |
-          sed -i "s/EMAILJS_PUBLIC_KEY/${{ secrets.EMAILJS_PUBLIC_KEY }}/g" index.html
-          sed -i "s/EMAILJS_SERVICE_ID/${{ secrets.EMAILJS_SERVICE_ID }}/g" index.html
-          sed -i "s/EMAILJS_TEMPLATE_ID/${{ secrets.EMAILJS_TEMPLATE_ID }}/g" index.html
+          node -e "
+          const fs = require('fs');
+          let content = fs.readFileSync('index.html', 'utf8');
+          content = content.replace(/{{EMAILJS_PUBLIC_KEY}}/g, '${{ secrets.EMAILJS_PUBLIC_KEY }}');
+          content = content.replace(/{{EMAILJS_SERVICE_ID}}/g, '${{ secrets.EMAILJS_SERVICE_ID }}');
+          content = content.replace(/{{EMAILJS_TEMPLATE_ID}}/g, '${{ secrets.EMAILJS_TEMPLATE_ID }}');
+          fs.writeFileSync('index.html', content);
+          "
 
       - name: Setup GitHub Pages
         uses: actions/configure-pages@v5

@@ -16,7 +16,7 @@
     // ║  EMAILJS PUBLIC KEY (injected at build via GitHub Actions)
     // ║  This value is substituted from a secret: `EMAILJS_PUBLIC_KEY`
     // ╚══════════════════════════════════════════════════════════╝
-    const api_key = 'EMAILJS_PUBLIC_KEY';
+    const api_key = '{{EMAILJS_PUBLIC_KEY}}';
     (function () { emailjs.init(api_key); })();
   </script>
   <style>
@@ -1488,8 +1488,8 @@
     // These values are substituted at build time from GitHub Secrets:
     // - EMAILJS_SERVICE_ID
     // - EMAILJS_TEMPLATE_ID
-    const EMAILJS_SVC = 'EMAILJS_SERVICE_ID';
-    const EMAILJS_TPL = 'EMAILJS_TEMPLATE_ID';
+    const EMAILJS_SVC = '{{EMAILJS_SERVICE_ID}}';
+    const EMAILJS_TPL = '{{EMAILJS_TEMPLATE_ID}}';
 
     // Form submit — sends email via EmailJS
     function handleSubmit() {
