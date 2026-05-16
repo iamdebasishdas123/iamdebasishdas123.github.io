@@ -13,10 +13,10 @@
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <script type="text/javascript">
     // ╔══════════════════════════════════════════════════════════╗
-    // ║  EMAILJS PUBLIC KEY (injected at build via GitHub Actions)
-    // ║  This value is substituted from a secret: `EMAILJS_PUBLIC_KEY`
+    // ║  REPLACE THIS WITH YOUR EMAILJS PUBLIC KEY              ║
+    // ║  Get it from: emailjs.com → Account → API Keys          ║
     // ╚══════════════════════════════════════════════════════════╝
-    const api_key = 'EMAILJS_PUBLIC_KEY';
+    const api_key = 'ohoRIg3bJotxc_2a2';
     (function () { emailjs.init(api_key); })();
   </script>
   <style>
@@ -1402,7 +1402,7 @@
       <button class="btn-primary" id="sendBtn" onclick="handleSubmit()" style="width:fit-content;">Send Message
         →</button>
       <div class="success-msg" id="successMsg">✓ Message sent! I'll get back to you within 24 hours.</div>
-      <div class="success-msg" id="errorMsg">✓ Message sent! I'll get back to you within 24 hours.</div>
+      <div class="error-msg" id="errorMsg">✕ Failed to send. Please try again or email me directly.</div>
     </div>
 
     <div class="contact-links reveal">
@@ -1485,11 +1485,9 @@
     // ║  Service ID → emailjs.com → Email Services                  ║
     // ║  Template ID → emailjs.com → Email Templates                ║
     // ╚══════════════════════════════════════════════════════════════╝
-    // These values are substituted at build time from GitHub Secrets:
-    // - EMAILJS_SERVICE_ID
-    // - EMAILJS_TEMPLATE_ID
-    const EMAILJS_SVC = 'EMAILJS_SERVICE_ID';
-    const EMAILJS_TPL = 'EMAILJS_TEMPLATE_ID';
+    // 
+    const EMAILJS_SVC = 'service_5di6xib';
+    const EMAILJS_TPL = 'template_gtjp87r';
 
     // Form submit — sends email via EmailJS
     function handleSubmit() {
