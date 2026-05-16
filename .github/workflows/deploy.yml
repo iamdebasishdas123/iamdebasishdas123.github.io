@@ -40,18 +40,18 @@ jobs:
           EMAILJS_TEMPLATE_ID: ${{ secrets.EMAILJS_TEMPLATE_ID }}
         run: |
           python3 - <<'PY'
-import os
-p = 'index.html'
-with open(p, 'r', encoding='utf-8') as f:
-    s = f.read()
-# Replace placeholders with environment secrets (handles arbitrary characters safely)
-s = s.replace('EMAILJS_PUBLIC_KEY', os.environ.get('EMAILJS_PUBLIC_KEY',''))
-s = s.replace('EMAILJS_SERVICE_ID', os.environ.get('EMAILJS_SERVICE_ID',''))
-s = s.replace('EMAILJS_TEMPLATE_ID', os.environ.get('EMAILJS_TEMPLATE_ID',''))
-with open(p, 'w', encoding='utf-8') as f:
-    f.write(s)
-print('Replaced EmailJS placeholders in', p)
-PY
+          import os
+          p = 'index.html'
+          with open(p, 'r', encoding='utf-8') as f:
+              s = f.read()
+          # Replace placeholders with environment secrets (handles arbitrary characters safely)
+          s = s.replace('EMAILJS_PUBLIC_KEY', os.environ.get('EMAILJS_PUBLIC_KEY',''))
+          s = s.replace('EMAILJS_SERVICE_ID', os.environ.get('EMAILJS_SERVICE_ID',''))
+          s = s.replace('EMAILJS_TEMPLATE_ID', os.environ.get('EMAILJS_TEMPLATE_ID',''))
+          with open(p, 'w', encoding='utf-8') as f:
+              f.write(s)
+          print('Replaced EmailJS placeholders in', p)
+          PY
 
       - name: Setup GitHub Pages
         uses: actions/configure-pages@v5
