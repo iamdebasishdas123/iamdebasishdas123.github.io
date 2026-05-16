@@ -13,10 +13,10 @@
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <script type="text/javascript">
     // ╔══════════════════════════════════════════════════════════╗
-    // ║  REPLACE THIS WITH YOUR EMAILJS PUBLIC KEY              ║
-    // ║  Get it from: emailjs.com → Account → API Keys          ║
+    // ║  EMAILJS PUBLIC KEY (injected at build via GitHub Actions)
+    // ║  This value is substituted from a secret: `EMAILJS_PUBLIC_KEY`
     // ╚══════════════════════════════════════════════════════════╝
-    const api_key = 'ohoRIg3bJotxc_2a2';
+    const api_key = 'EMAILJS_PUBLIC_KEY';
     (function () { emailjs.init(api_key); })();
   </script>
   <style>
@@ -1485,9 +1485,11 @@
     // ║  Service ID → emailjs.com → Email Services                  ║
     // ║  Template ID → emailjs.com → Email Templates                ║
     // ╚══════════════════════════════════════════════════════════════╝
-    // Example placeholders:
-    const EMAILJS_SVC = 'service_5di6xib';
-    const EMAILJS_TPL = 'template_gtjp87r';
+    // These values are substituted at build time from GitHub Secrets:
+    // - EMAILJS_SERVICE_ID
+    // - EMAILJS_TEMPLATE_ID
+    const EMAILJS_SVC = 'EMAILJS_SERVICE_ID';
+    const EMAILJS_TPL = 'EMAILJS_TEMPLATE_ID';
 
     // Form submit — sends email via EmailJS
     function handleSubmit() {
