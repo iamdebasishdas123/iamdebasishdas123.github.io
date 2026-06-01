@@ -19,7 +19,7 @@
   --warm:#c8b89a;
   --gold:#d4a84b;
   --gold2:#e8c97a;
-  --rust:#712818;
+  --rust:#c0533a;
   --sage:#4a6741;
   --void:#06060a;
   --muted:#9c8f7d;
@@ -1067,14 +1067,33 @@ function handleSubmit(){
   const ok=document.getElementById('successMsg');
   const err=document.getElementById('errorMsg');
   ok.style.display='none';err.style.display='none';
+
+  // Template params — these names must exactly match the {{variables}}
+  // in your EmailJS template (emailjs.com → Email Templates → Edit)
+  const templateParams={
+    name:        name,
+    from_name:   name,
+    from_email:  email,
+    reply_to:    email,
+    subject:     subject||'Portfolio Contact',
+    message:     message,
+  };
+
   btn.classList.add('loading');btn.textContent='Sending…';
-  emailjs.send(EMAILJS_SVC,EMAILJS_TPL,{name,from_email:email,subject:subject||'Portfolio Contact',message})
+  emailjs.send(EMAILJS_SVC, EMAILJS_TPL, templateParams)
     .then(()=>{
       ok.style.display='block';
       ['fname','femail','fsubject','fmessage'].forEach(id=>document.getElementById(id).value='');
       setTimeout(()=>ok.style.display='none',7000);
     })
-    .catch(e=>{console.error(e);err.style.display='block';setTimeout(()=>err.style.display='none',7000);})
+    .catch(e=>{
+      // Show the real error reason in the error box
+      const reason = e?.text || e?.message || JSON.stringify(e);
+      console.error('EmailJS error:', e);
+      err.textContent = '✕ ' + reason;
+      err.style.display='block';
+      setTimeout(()=>{err.style.display='none'; err.textContent='✕ Failed to send. Please try again or email me directly.';},9000);
+    })
     .finally(()=>{btn.classList.remove('loading');btn.textContent='Send Message ▷';});
 }
 
