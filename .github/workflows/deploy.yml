@@ -1,7 +1,7 @@
-# GitHub Actions workflow to deploy Portfolio to GitHub Pages
+# GitHub Actions workflow — Deploy Portfolio to GitHub Pages
 # Injects EmailJS keys from GitHub Secrets at build time
 #
-# Required GitHub Secrets (Settings → Secrets → Actions):
+# Required GitHub Secrets (Settings → Secrets and variables → Actions):
 #   EMAILJS_PUBLIC_KEY   — Your EmailJS Public Key
 #   EMAILJS_SERVICE_ID   — Your EmailJS Service ID
 #   EMAILJS_TEMPLATE_ID  — Your EmailJS Template ID
@@ -33,11 +33,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Inject EmailJS keys into index.html
+      - name: Inject EmailJS secrets into index.html
         run: |
           sed -i "s/EMAILJS_PUBLIC_KEY/${{ secrets.EMAILJS_PUBLIC_KEY }}/g" index.html
           sed -i "s/EMAILJS_SERVICE_ID/${{ secrets.EMAILJS_SERVICE_ID }}/g" index.html
           sed -i "s/EMAILJS_TEMPLATE_ID/${{ secrets.EMAILJS_TEMPLATE_ID }}/g" index.html
+
       - name: Setup GitHub Pages
         uses: actions/configure-pages@v5
 
